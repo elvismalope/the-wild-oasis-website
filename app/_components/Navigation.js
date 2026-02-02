@@ -5,6 +5,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/20/solid";
 import { signOutAction } from "../_lib/actions";
+import Image from "next/image";
 
 export default async function Navigation() {
   const session = await auth();
@@ -34,14 +35,17 @@ export default async function Navigation() {
             <div className="flex items-center gap-4">
               <Link
                 href="/account"
-                className="hover:text-accent-400 transition-colors flex items-center gap-2"
+                className="hover:text-accent-400 transition-colors flex items-center gap-2 relative"
               >
-                <img
+                <Image
                   src={session.user.image}
-                  className="h-8 rounded-full"
+                  className="rounded-full object-cover"
+                  height="32"
+                  width="32"
                   alt={session.user.name}
                   referrerPolicy="no-referre"
                 />
+
                 <span>Guest area</span>
               </Link>
               <div>

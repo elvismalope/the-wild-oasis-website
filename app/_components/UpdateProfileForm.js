@@ -3,6 +3,7 @@
 import { useFormStatus } from "react-dom";
 import { updateProfile } from "../_lib/actions";
 import SpinnerMini from "./SpinnerMini";
+import Image from "next/image";
 
 function UpdateProfileForm({ children, guest }) {
   return (
@@ -39,12 +40,14 @@ function FormDetails({ children, guest }) {
       </div>
 
       <div className="space-y-2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between relative">
           <label htmlFor="nationality">Where are you from?</label>
-          <img
+          <Image
             src={countryFlag}
             alt="Country flag"
-            className="h-5 rounded-sm"
+            height="20"
+            width="50"
+            className="rounded-sm object-cover"
           />
         </div>
         {children}

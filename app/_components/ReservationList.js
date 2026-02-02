@@ -2,6 +2,7 @@
 import { useOptimistic } from "react";
 import { deleteReservation } from "../_lib/actions";
 import ReservationCard from "./ReservationCard";
+import Link from "next/link";
 
 function ReservationList({ bookings }) {
   const [optBookings, setOptBookings] = useOptimistic(
