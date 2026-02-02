@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import {
+  createBooking,
   deleteBooking,
   getBooking,
   updateBooking,
@@ -50,6 +51,19 @@ export async function updateReservation(formData) {
     observations: formData.get("observations"),
   });
   revalidatePath(`/account/reservations/edit/${reservationId}`);
+  redirect("/account/reservations");
+}
+
+export async function createReservation(reservation, formData = []) {
+  const session = await checkPermission();
+  const data = Object.fromEntries(formData.entries());
+  const booking = {
+    ...reservation,
+    ...data,
+    guestId: session.user.guestId,
+  };
+  await createBooking(booking);
+  revalidatePath(`/cabins/${reservation.cabinId}`);
   redirect("/account/reservations");
 }
 
